@@ -71,7 +71,6 @@ const StyledBadge = withStyles((theme) => ({
     },
 }))(Badge);
 
-
 const Core: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
     const profile = useSelector(selectProfile);
@@ -106,7 +105,7 @@ const Core: React.FC = () => {
             <DeleteModal />
             <div className={styles.core_header}>
                 <h1 className={styles.core_title}>SNS clone</h1>
-                {profile?.nickName ?
+                {localStorage.getItem('localJWT') !== null ?
                     <>
                         <button
                             className={styles.core_btnModal}
@@ -176,7 +175,7 @@ const Core: React.FC = () => {
                 }
             </div>
 
-            {profile?.nickName && <>
+            {localStorage.getItem('localJWT') !== null && <>
                 <div className={styles.core_posts}>
                     <Grid container spacing={4}>
                         {posts
