@@ -20,12 +20,13 @@ const customStyles = {
         top: "50%",
         left: "50%",
 
-        width: 750,
-        height: 650,
+        width: "45%",
+        height: "70%",
+        minWidth: 500,
         padding: 0,
         borderRadius: "1rem",
 
-        transform: "translate(-50%, -50%)",
+        transform: "translate(-50%, -45%)",
     },
 };
 
