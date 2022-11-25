@@ -77,7 +77,7 @@ const Post: React.FC<PROPS_POST> = ({
         return (
             <div className={styles.post}>
                 <div className={styles.post_header}>
-                    <Avatar className={styles.post_avatar} src={prof[0]?.img} />
+                    <Avatar className={styles.post_avatar} src={prof[0]?.img.replace("http", "https")} />
                     <h3>{prof[0]?.nickName}</h3>
                     {
                         loginId === userPost ?
@@ -97,7 +97,7 @@ const Post: React.FC<PROPS_POST> = ({
 
                 </div>
 
-                <img className={styles.post_image} src={imageUrl} alt="" />
+                <img className={styles.post_image} src={imageUrl.replace("http", "https")} alt="" />
 
                 <h4 className={styles.post_text}>
                     <Checkbox

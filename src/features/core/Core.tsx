@@ -149,7 +149,7 @@ const Core: React.FC = () => {
                                     }}
                                     variant="dot"
                                 >
-                                    <Avatar alt="who?" src={profile.img} />{" "}
+                                    <Avatar alt="who?" src={profile.img.replace("http", "https")} />{" "}
                                 </StyledBadge>
                             </button>
                         </div>
