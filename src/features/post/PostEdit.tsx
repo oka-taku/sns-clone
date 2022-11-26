@@ -3,7 +3,6 @@ import Modal from 'react-modal'
 import styles from './Post.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch } from '../../app/store'
-import { TextField } from '@material-ui/core';
 import {
     fetchAsyncUpdatePost,
     resetOpenEditPost,
@@ -57,7 +56,7 @@ const PostEdit: React.FC = () => {
 
     const setTargetImg = (e: any) => {
         const fileInput: any = document.getElementById("imageInput");
-        if(!(fileInput.value)) return;
+        if (!(fileInput.value)) return;
         const reader = new FileReader();
         setImage(e.target.files![0]);
         reader.onload = (e: any) => {
@@ -89,7 +88,7 @@ const PostEdit: React.FC = () => {
                     </div>
                 </header>
                 <main>
-                    <img id='image' className={styles.edit_post_main_img} src={imageUrl} onClick={handlerEditPicture} />
+                    <img id='image' className={styles.edit_post_main_img} src={imageUrl.replace("http://snsclone.tk", "https://snsclone.tk")} alt="投稿画像" onClick={handlerEditPicture} />
                     <input
                         type="file"
                         id="imageInput"

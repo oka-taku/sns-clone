@@ -12,7 +12,7 @@ import {
     fetchPostStart,
     fetchPostEnd,
 } from './postSlice'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 
 const customStyles = {
     content: {

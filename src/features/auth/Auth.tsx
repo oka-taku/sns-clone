@@ -5,7 +5,7 @@ import styles from './Auth.module.css'
 import Modal from 'react-modal'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { TextField, Button, CircularProgress } from '@material-ui/core'
+import { TextField, Button, CircularProgress } from '@mui/material'
 import { fetchAsyncGetPosts, fetchAsyncGetComments } from '../post/postSlice'
 import {
     selectIsLoadingAuth,
@@ -102,6 +102,7 @@ const Auth: React.FC = () => {
                                     </div>
                                     <br />
                                     <TextField
+                                        variant="standard"
                                         placeholder="メールアドレス"
                                         type="input"
                                         name="email"
@@ -116,6 +117,7 @@ const Auth: React.FC = () => {
                                     <br />
 
                                     <TextField
+                                        variant="standard"
                                         placeholder="パスワード"
                                         type="password"
                                         name="password"
@@ -203,6 +205,7 @@ const Auth: React.FC = () => {
                                     <br />
 
                                     <TextField
+                                        variant="standard"
                                         placeholder="メールアドレス"
                                         type="input"
                                         name="email"
@@ -217,6 +220,7 @@ const Auth: React.FC = () => {
                                     <br />
 
                                     <TextField
+                                        variant="standard"
                                         placeholder="パスワード"
                                         type="password"
                                         name="password"

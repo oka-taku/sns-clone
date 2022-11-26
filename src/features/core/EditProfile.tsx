@@ -13,7 +13,7 @@ import {
     fetchCredEnd,
     fetchAsyncUpdateProf,
 } from '../auth/authSlice'
-import { Button, TextField, IconButton } from '@material-ui/core'
+import { Button, TextField, IconButton } from '@mui/material'
 import { MdAddAPhoto } from 'react-icons/md'
 
 const customStyles = {
@@ -64,6 +64,7 @@ const EditProfile: React.FC = () => {
 
                     <br />
                     <TextField
+                        variant="standard"
                         placeholder="nickname"
                         type="text"
                         value={profile?.nickName}

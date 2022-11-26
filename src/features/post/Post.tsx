@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styles from './Post.module.css'
-import { makeStyles } from '@material-ui/core'
-import { Avatar, Divider, Checkbox } from '@material-ui/core'
-import { Favorite, FavoriteBorder } from '@material-ui/icons'
-import { AvatarGroup } from '@material-ui/lab'
+import { Avatar, Divider, Checkbox } from '@mui/material'
+import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import { AvatarGroup } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { BsThreeDots } from 'react-icons/bs'
 import { IconContext } from 'react-icons'
@@ -21,14 +20,6 @@ import {
 } from './postSlice'
 import { PROPS_POST } from '../types'
 
-const useStyles = makeStyles((theme) => ({
-    small: {
-        width: theme.spacing(3),
-        height: theme.spacing(3),
-        marginRight: theme.spacing(1),
-    },
-}));
-
 const Post: React.FC<PROPS_POST> = ({
     postId,
     loginId,
@@ -38,7 +29,6 @@ const Post: React.FC<PROPS_POST> = ({
     liked,
 }) => {
 
-    const classes = useStyles();
     const dispatch: AppDispatch = useDispatch();
     const profiles = useSelector(selectProfiles);
     const comments = useSelector(selectComments);
@@ -77,7 +67,7 @@ const Post: React.FC<PROPS_POST> = ({
         return (
             <div className={styles.post}>
                 <div className={styles.post_header}>
-                    <Avatar className={styles.post_avatar} src={prof[0]?.img.replace("http", "https")} />
+                    <Avatar className={styles.post_avatar} src={prof[0]?.img.replace("http://snsclone.tk", "https://snsclone.tk")} />
                     <h3>{prof[0]?.nickName}</h3>
                     {
                         loginId === userPost ?
@@ -97,13 +87,13 @@ const Post: React.FC<PROPS_POST> = ({
 
                 </div>
 
-                <img className={styles.post_image} src={imageUrl.replace("http", "https")} alt="" />
+                <img className={styles.post_image} src={imageUrl.replace("http://snsclone.tk", "https://snsclone.tk")} alt="" />
 
                 <h4 className={styles.post_text}>
                     <Checkbox
                         className={styles.post_checkBox}
                         icon={<FavoriteBorder />}
-                        checkedIcon={<Favorite />}
+                        checkedIcon={<Favorite sx={{ color: "#f50057" }} />}
                         checked={liked.some((like) => like === loginId)}
                         onChange={handlerLiked}
                     />
@@ -113,7 +103,7 @@ const Post: React.FC<PROPS_POST> = ({
                             <Avatar
                                 className={styles.post_avatarGroup}
                                 key={like}
-                                src={profiles.find((prof) => prof.userProfile === like)?.img}
+                                src={profiles.find((prof) => prof.userProfile === like)?.img.replace("http://snsclone.tk", "https://snsclone.tk")}
                             />
                         ))}
 
@@ -128,9 +118,9 @@ const Post: React.FC<PROPS_POST> = ({
                                 src={
                                     profiles.find(
                                         (prof) => prof.userProfile === comment.userComment
-                                    )?.img
+                                    )?.img.replace("http://snsclone.tk", "https://snsclone.tk")
                                 }
-                                className={classes.small}
+                                sx={{w: 3, h: 3, mr: 1}}
                             />
                             <p>
                                 <strong className={styles.post_strong}>
