@@ -103,7 +103,7 @@ const Post: React.FC<PROPS_POST> = ({
                             <Avatar
                                 className={styles.post_avatarGroup}
                                 key={like}
-                                src={profiles.find((prof) => prof.userProfile === like)?.img.replace("http://snsclone.tk", "https://snsclone.tk")}
+                                src={profiles.find((prof) => prof.userProfile === like)?.img?.replace("http://snsclone.tk", "https://snsclone.tk")}
                             />
                         ))}
 
