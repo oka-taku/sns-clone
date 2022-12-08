@@ -67,7 +67,7 @@ const Post: React.FC<PROPS_POST> = ({
         return (
             <div className={styles.post}>
                 <div className={styles.post_header}>
-                    <Avatar className={styles.post_avatar} src={prof[0]?.img.replace("http://snsclone.tk", "https://snsclone.tk")} />
+                    <Avatar className={styles.post_avatar} src={prof[0]?.img?.replace("http://snsclone.tk", "https://snsclone.tk")} />
                     <h3>{prof[0]?.nickName}</h3>
                     {
                         loginId === userPost ?

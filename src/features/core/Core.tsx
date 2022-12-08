@@ -104,7 +104,7 @@ const Core: React.FC = () => {
                                     dispatch(resetOpenDelete());
                                 }}
                             >
-                                <Avatar alt="who?" src={profile.img.replace("http://snsclone.tk", "https://snsclone.tk")} />{" "}
+                                <Avatar alt="who?" src={profile.img?.replace("http://snsclone.tk", "https://snsclone.tk")} />{" "}
                             </button>
                         </div>
                     </> :
