@@ -118,7 +118,7 @@ const Post: React.FC<PROPS_POST> = ({
                                 src={
                                     profiles.find(
                                         (prof) => prof.userProfile === comment.userComment
-                                    )?.img.replace("http://snsclone.tk", "https://snsclone.tk")
+                                    )?.img?.replace("http://snsclone.tk", "https://snsclone.tk")
                                 }
                                 sx={{w: 3, h: 3, mr: 1}}
                             />
