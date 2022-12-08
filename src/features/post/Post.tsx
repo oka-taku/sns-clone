@@ -101,7 +101,7 @@ const Post: React.FC<PROPS_POST> = ({
                     <AvatarGroup max={7}>
                         {liked.map((like) => (
                             <Avatar
-                                className={styles.post_avatarGroup}
+                                className={`${styles.post_avatarGroup} ${styles.post_avatar}`}
                                 key={like}
                                 src={profiles.find((prof) => prof.userProfile === like)?.img?.replace("http://snsclone.tk", "https://snsclone.tk")}
                             />
@@ -120,6 +120,7 @@ const Post: React.FC<PROPS_POST> = ({
                                         (prof) => prof.userProfile === comment.userComment
                                     )?.img?.replace("http://snsclone.tk", "https://snsclone.tk")
                                 }
+                                className={styles.post_avatar}
                                 sx={{w: 3, h: 3, mr: 1}}
                             />
                             <p>

@@ -12,24 +12,25 @@ import {
     fetchPostStart,
     fetchPostEnd,
 } from './postSlice'
-import { Button } from '@mui/material'
+import { Button, useMediaQuery } from '@mui/material'
 
-const customStyles = {
-    content: {
-        top: "50%",
-        left: "50%",
-
-        width: 400,
-        height: 200,
-        padding: 0,
-        borderRadius: "1rem",
-
-        transform: "translate(-50%, -50%)",
-    },
-};
 
 const DeleteModal = () => {
 
+    const isMaxWidth = useMediaQuery('(max-width: 550px)');
+    const customStyles = {
+        content: {
+            top: "50%",
+            left: "50%",
+    
+            width: isMaxWidth ? 250 : 400,
+            height: 200,
+            padding: 0,
+            borderRadius: "1rem",
+    
+            transform: "translate(-50%, -50%)",
+        },
+    };
     const dispatch: AppDispatch = useDispatch();
     const openPostDelete = useSelector(selectOpenDelete);
     const postId = useSelector(selectPostId);

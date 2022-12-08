@@ -9,25 +9,25 @@ import {
     selectOpenPostMenu,
     setOpenEditPost,
 } from './postSlice'
-import { Button } from '@mui/material'
-
-const customStyles = {
-    content: {
-        top: "50%",
-        left: "50%",
-
-        width: 400,
-        height: 150,
-        padding: 0,
-        borderRadius: "1rem",
-        overflow: "clip",
-
-        transform: "translate(-50%, -50%)",
-    },
-};
+import { Button, useMediaQuery } from '@mui/material'
 
 const PostMenu: React.FC = () => {
 
+    const isMaxWidth = useMediaQuery('(max-width: 550px)');
+    const customStyles = {
+        content: {
+            top: "50%",
+            left: "50%",
+    
+            width: isMaxWidth ? 250 : 400,
+            height: 150,
+            padding: 0,
+            borderRadius: "1rem",
+            overflow: "clip",
+    
+            transform: "translate(-50%, -50%)",
+        },
+    };
     const dispatch: AppDispatch = useDispatch();
     const openPostMenu = useSelector(selectOpenPostMenu);
 

@@ -25,6 +25,7 @@
     display: flex;
     z-index: 1;
     justify-content: space-between;
+    align-items: center;
 }
 
 .core_btnModal {
@@ -50,4 +51,23 @@
     margin-top: 15px;
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 550px) {
+    .core_title {
+        font-size: 1.5rem;
+    }
+
+    .core_btnModal {
+        font-size: 1.5rem;
+    }
+
+    .core_logout_btn {
+        font-size: 0.7rem;
+    }
+
+    .core_avator {
+        width: 30px !important;
+        height: 30px !important;
+    }
 }

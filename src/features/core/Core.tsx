@@ -61,12 +61,6 @@ const Core: React.FC = () => {
 
     return (
         <div>
-            <Auth />
-            <EditProfile />
-            <NewPost />
-            <PostMenu />
-            <PostEdit />
-            <DeleteModal />
             <div className={styles.core_header}>
                 <h1 className={styles.core_title}>SNS clone</h1>
                 {localStorage.getItem('localJWT') !== null && profile.id ?
@@ -83,6 +77,7 @@ const Core: React.FC = () => {
                         </button>
                         <div className={styles.core_logout}>
                             <Button color='inherit'
+                                className={styles.core_logout_btn}
                                 onClick={() => {
                                     localStorage.removeItem("localJWT");
                                     dispatch(editNickname(""));
@@ -104,7 +99,7 @@ const Core: React.FC = () => {
                                     dispatch(resetOpenDelete());
                                 }}
                             >
-                                <Avatar alt="who?" src={profile.img?.replace("http://snsclone.tk", "https://snsclone.tk")} />{" "}
+                                <Avatar className={styles.core_avator} alt="who?" src={profile.img?.replace("http://snsclone.tk", "https://snsclone.tk")} />{" "}
                             </button>
                         </div>
                     </> :
@@ -138,7 +133,7 @@ const Core: React.FC = () => {
                             .slice(0)
                             .reverse()
                             .map((post) => (
-                                <Grid key={post.id} item xs={12} md={4}>
+                                <Grid key={post.id} item xs={12} md={4} sm={6}>
                                     <Post
                                         postId={post.id}
                                         title={post.title}
@@ -152,6 +147,12 @@ const Core: React.FC = () => {
                     </Grid>
                 </div>
             </>}
+            {localStorage.getItem('localJWT') === null || !profile.id ? <Auth /> : null}
+            <EditProfile />
+            <NewPost />
+            <PostMenu />
+            <PostEdit />
+            <DeleteModal />
         </div>
     )
 }

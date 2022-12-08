@@ -11,23 +11,24 @@ import {
     fetchPostEnd,
     fetchAsyncNewPost,
 } from '../post/postSlice'
-import { Button, TextField, IconButton } from '@mui/material';
+import { Button, TextField, IconButton, useMediaQuery } from '@mui/material';
 import { MdAddAPhoto } from 'react-icons/md'
 
-const customStyles = {
-    content: {
-        top: "55%",
-        left: "50%",
-
-        width: 280,
-        height: 220,
-        padding: "50px",
-
-        transform: "translate(-50%, -50%)",
-    },
-};
-
 const NewPost: React.FC = () => {
+
+    const isMaxWidth = useMediaQuery('(max-width: 550px)');
+    const customStyles = {
+        content: {
+            top: "55%",
+            left: "50%",
+            overflow: "hidden",
+            width: isMaxWidth ? 140 : 280,
+            height: 220,
+            padding: "50px",
+
+            transform: "translate(-50%, -50%)",
+        },
+    };
 
     const dispatch: AppDispatch = useDispatch();
     const openNewPost = useSelector(selectOpenNewPost);
@@ -66,8 +67,10 @@ const NewPost: React.FC = () => {
                     <br />
                     <TextField
                         variant="standard"
-                        placeholder="タイトルを入力してください"
+                        label="タイトルを入力してください"
                         type="text"
+                        inputProps={{style: {fontSize: isMaxWidth ? 10 : 15}}}
+                        InputLabelProps={{style: {fontSize: isMaxWidth ? 10 : 15}}}
                         onChange={(e) => setTitle(e.target.value)}
                     />
 

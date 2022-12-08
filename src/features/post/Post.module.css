@@ -161,3 +161,18 @@
 .delete_button_border {
     border-top: 1px solid rgba(136, 136, 136, 0.3);
 }
+
+@media screen and (max-width: 550px) {
+    .post_avatar {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .edit_post_header {
+        font-size: 0.8rem;
+    }
+    
+    .edit_post_header_button {
+        font-size: 0.8rem;
+    }
+}

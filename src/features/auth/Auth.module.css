@@ -30,3 +30,12 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 550px) {
+    .auth_signUp {
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        background-color: white;
+    }
+}

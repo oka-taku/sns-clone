@@ -14,23 +14,22 @@ import {
     fetchPostEnd,
 } from './postSlice'
 
-const customStyles = {
-    content: {
-        top: "50%",
-        left: "50%",
-
-        width: "45%",
-        height: "70%",
-        minWidth: 500,
-        padding: 0,
-        borderRadius: "1rem",
-
-        transform: "translate(-50%, -45%)",
-    },
-};
-
 const PostEdit: React.FC = () => {
 
+    const customStyles = {
+        content: {
+            top: "50%",
+            left: "50%",
+    
+            width: "45%",
+            height: "70%",
+            minWidth: 250,
+            padding: 0,
+            borderRadius: "1rem",
+    
+            transform: "translate(-50%, -45%)",
+        },
+    };
     const dispatch: AppDispatch = useDispatch();
     const openEditPost = useSelector(selectOpenEditPost);
     const postId = useSelector(selectPostId);
