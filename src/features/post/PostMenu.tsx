@@ -19,7 +19,7 @@ const PostMenu: React.FC = () => {
             top: "50%",
             left: "50%",
     
-            width: isMaxWidth ? 250 : 400,
+            width: isMaxWidth ? "80%" : 400,
             height: 150,
             padding: 0,
             borderRadius: "1rem",
