@@ -29,6 +29,7 @@ import {
     fetchAsyncGetPosts,
     fetchAsyncGetComments,
     resetOpenPostMenu,
+    resetOpenEditPost,
     resetOpenDelete,
 } from '../post/postSlice'
 import EditProfile from './EditProfile'
@@ -72,6 +73,7 @@ const Core: React.FC = () => {
                                 dispatch(resetOpenProfile());
                                 dispatch(resetOpenPostMenu());
                                 dispatch(resetOpenDelete());
+                                dispatch(resetOpenEditPost());
                             }}>
                             <MdAddAPhoto />
                         </button>
@@ -85,6 +87,7 @@ const Core: React.FC = () => {
                                     dispatch(resetOpenNewPost());
                                     dispatch(resetOpenPostMenu());
                                     dispatch(resetOpenDelete());
+                                    dispatch(resetOpenEditPost());
                                     dispatch(setOpenSignIn());
                                 }}>
                                 ログアウト
@@ -96,6 +99,7 @@ const Core: React.FC = () => {
                                     dispatch(setOpenProfile());
                                     dispatch(resetOpenNewPost());
                                     dispatch(resetOpenPostMenu());
+                                    dispatch(resetOpenEditPost());
                                     dispatch(resetOpenDelete());
                                 }}
                             >
