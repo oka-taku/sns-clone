@@ -13,21 +13,25 @@ import {
     fetchPostStart,
     fetchPostEnd,
 } from './postSlice'
+import { useMediaQuery } from '@mui/material'
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+
 
 const PostEdit: React.FC = () => {
-
+    const isMaxWidth = useMediaQuery('(max-width: 1024px)');
     const customStyles = {
         content: {
             top: "50%",
             left: "50%",
+            overflowy: "scroll",
     
-            width: "45%",
-            height: "70%",
+            width: isMaxWidth ? "80%" : "50%",
+            height: "60%",
             minWidth: 250,
             padding: 0,
             borderRadius: "1rem",
     
-            transform: "translate(-50%, -45%)",
+            transform: "translate(-50%, -40%)",
         },
     };
     const dispatch: AppDispatch = useDispatch();
@@ -86,7 +90,7 @@ const PostEdit: React.FC = () => {
                             onClick={editPost}>完了</button>
                     </div>
                 </header>
-                <main>
+                <main style={{height: "90%"}}>
                     <img id='image' className={styles.edit_post_main_img} src={imageUrl.replace("http://snsclone.tk", "https://snsclone.tk")} alt="投稿画像" onClick={handlerEditPicture} />
                     <input
                         type="file"
@@ -94,8 +98,7 @@ const PostEdit: React.FC = () => {
                         hidden={true}
                         onChange={(e) => setTargetImg(e)}
                     />
-                    <textarea placeholder='タイトルを入力してください' defaultValue={title} onChange={(e) => setTitle(e.target.value)} className={styles.edit_post_main_title}></textarea>
-
+                    <TextareaAutosize placeholder='タイトルを入力してください' defaultValue={title} onChange={(e) => setTitle(e.target.value)} className={styles.edit_post_main_title} maxRows={2} />
                 </main>
             </Modal>
         </>

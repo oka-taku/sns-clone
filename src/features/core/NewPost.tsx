@@ -22,7 +22,7 @@ const NewPost: React.FC = () => {
             top: "55%",
             left: "50%",
             overflow: "hidden",
-            width: isMaxWidth ? 140 : 280,
+            width: isMaxWidth ? "50%" : 280,
             height: 220,
             padding: "50px",
 
