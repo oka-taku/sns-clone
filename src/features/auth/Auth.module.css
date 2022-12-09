@@ -1,3 +1,10 @@
+.auth_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+}
+
 .auth_title {
     font-family: "Playball", cursive;
     font-weight: normal;
@@ -11,8 +18,13 @@
 }
 
 .auth_signUp {
+    width: 350px;
     display: flex;
     flex-direction: column;
+    padding: 50px;
+    margin: 30px 0;
+    background-color: white;
+    border: 1px solid #dbdbdb;
 }
 
 .auth_headerImage {
@@ -32,10 +44,25 @@
 }
 
 @media screen and (max-width: 550px) {
+    .auth_container {
+        display: block;
+    }
+
     .auth_signUp {
-        display: flex;
-        flex-direction: column;
-        padding: 50px;
+        width: auto;
+        margin: 0;
+        border: none;
+    }
+}
+
+@media screen and (min-height: 1000px) {
+    .auth_container {
+        height: 90vh;
+    }
+}
+
+@media screen and (max-width: 550px) and (min-height: 1000px) {
+    .auth_container {
         background-color: white;
     }
 }

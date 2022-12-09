@@ -64,7 +64,7 @@ const SignUp: React.FC = () => {
                     errors,
                     touched,
                     isValid,
-                }) => <div>
+                }) => <div className={styles.auth_container}>
                         <form onSubmit={handleSubmit}>
                             <div className={styles.auth_signUp}>
                                 <h1 className={styles.auth_title}>SNS clone</h1>
