@@ -23,13 +23,10 @@ const CommentEdit: React.FC = () => {
     const isMaxWidth = useMediaQuery('(max-width: 550px)');
     const customStyles = {
         content: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
             top: "50%",
             left: "50%",
             overflow: "hidden",
-            width: isMaxWidth ? "50%" : 200,
+            width: isMaxWidth ? "50%" : 250,
             height: 100,
             padding: "50px",
 
@@ -62,6 +59,7 @@ const CommentEdit: React.FC = () => {
                         placeholder="コメントを入力してください"
                         type="text"
                         defaultValue={comment}
+                        inputProps={{style: {fontSize: isMaxWidth ? 10 : ""}}}
                         onChange={(e) => setInputComment(e.target.value)}
                     />
                     <br />

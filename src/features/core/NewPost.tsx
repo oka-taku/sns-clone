@@ -69,8 +69,8 @@ const NewPost: React.FC = () => {
                         variant="standard"
                         label="タイトルを入力してください"
                         type="text"
-                        inputProps={{style: {fontSize: isMaxWidth ? 10 : 15}}}
-                        InputLabelProps={{style: {fontSize: isMaxWidth ? 10 : 15}}}
+                        inputProps={{style: {fontSize: isMaxWidth ? 10 : ""}}}
+                        InputLabelProps={{style: {fontSize: isMaxWidth ? 10 : ""}}}
                         onChange={(e) => setTitle(e.target.value)}
                     />
 
