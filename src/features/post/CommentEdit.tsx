@@ -66,6 +66,7 @@ const CommentEdit: React.FC = () => {
                     <Button
                         variant="contained"
                         color="primary"
+                        type="submit"
                         onClick={editComment}
                     >
                         更新

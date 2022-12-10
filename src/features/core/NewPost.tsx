@@ -90,6 +90,7 @@ const NewPost: React.FC = () => {
                         disabled={!title || !image}
                         variant="contained"
                         color="primary"
+                        type="submit"
                         onClick={newPost}
                     >
                         投稿
