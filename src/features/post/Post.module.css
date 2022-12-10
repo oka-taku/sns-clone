@@ -49,11 +49,11 @@
     word-break: break-all;
 }
 
-.post_comment svg {
+.post_comment_three_dots {
     margin-left: auto;
 }
 
-.post_comment svg:hover {
+.post_comment_three_dots:hover {
     cursor: pointer;
 }
 

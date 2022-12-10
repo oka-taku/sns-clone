@@ -135,7 +135,7 @@ const Post: React.FC<PROPS_POST> = ({
                                 {comment.text}
                             </p>
                             {comment.userComment === loginId ?
-                                <MoreVert onClick={() => {
+                                <MoreVert className={styles.post_comment_three_dots} onClick={() => {
                                     dispatch(setOpenCommentMenu(comment.id));
                                     dispatch(setTextComment(comment.text));
                                 }} />
