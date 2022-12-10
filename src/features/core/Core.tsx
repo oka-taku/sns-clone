@@ -31,12 +31,18 @@ import {
     resetOpenPostMenu,
     resetOpenEditPost,
     resetOpenDelete,
+    resetOpenCommentMenu,
+    resetOpenDeleteComment,
+    resetOpenEditComment,
 } from '../post/postSlice'
 import EditProfile from './EditProfile'
 import NewPost from './NewPost'
 import PostMenu from '../post/PostMenu'
 import PostEdit from '../post/PostEdit'
 import DeleteModal from '../post/DeleteModal'
+import CommentMenu from '../post/CommentMenu'
+import DeleteCommentModal from '../post/DeleteCommentModal'
+import CommentEdit from '../post/CommentEdit'
 
 const Core: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -74,6 +80,9 @@ const Core: React.FC = () => {
                                 dispatch(resetOpenPostMenu());
                                 dispatch(resetOpenDelete());
                                 dispatch(resetOpenEditPost());
+                                dispatch(resetOpenCommentMenu());
+                                dispatch(resetOpenDeleteComment());
+                                dispatch(resetOpenEditComment());
                             }}>
                             <MdAddAPhoto />
                         </button>
@@ -88,6 +97,9 @@ const Core: React.FC = () => {
                                     dispatch(resetOpenPostMenu());
                                     dispatch(resetOpenDelete());
                                     dispatch(resetOpenEditPost());
+                                    dispatch(resetOpenCommentMenu());
+                                    dispatch(resetOpenDeleteComment());
+                                    dispatch(resetOpenEditComment());
                                     dispatch(setOpenSignIn());
                                 }}>
                                 ログアウト
@@ -101,6 +113,9 @@ const Core: React.FC = () => {
                                     dispatch(resetOpenPostMenu());
                                     dispatch(resetOpenEditPost());
                                     dispatch(resetOpenDelete());
+                                    dispatch(resetOpenCommentMenu());
+                                    dispatch(resetOpenDeleteComment());
+                                    dispatch(resetOpenEditComment());
                                 }}
                             >
                                 <Avatar className={styles.core_avator} alt="who?" src={profile.img?.replace("http://snsclone.tk", "https://snsclone.tk")} />{" "}
@@ -157,6 +172,9 @@ const Core: React.FC = () => {
             <PostMenu />
             <PostEdit />
             <DeleteModal />
+            <CommentMenu />
+            <DeleteCommentModal />
+            <CommentEdit />
         </div>
     )
 }

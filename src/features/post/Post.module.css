@@ -49,6 +49,14 @@
     word-break: break-all;
 }
 
+.post_comment svg {
+    margin-left: auto;
+}
+
+.post_comment svg:hover {
+    cursor: pointer;
+}
+
 .post_commentBox {
     display: flex;
     margin-top: 10px;
@@ -162,6 +170,11 @@
 
 .delete_button_border {
     border-top: 1px solid rgba(136, 136, 136, 0.3);
+}
+
+.edit_comment {
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 550px) {

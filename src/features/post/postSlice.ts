@@ -1,7 +1,14 @@
+/* eslint-disable array-callback-return */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import axios from "axios";
-import { PROPS_NEWPOST, PROPS_LIKED, PROPS_COMMENT, PROPS_UPDATEPOST } from "../types";
+import {
+  PROPS_NEWPOST,
+  PROPS_LIKED,
+  PROPS_COMMENT,
+  PROPS_UPDATEPOST,
+  PROPS_UPDATECOMMENT,
+} from "../types";
 
 const apiUrlPost = `${process.env.REACT_APP_DEV_API_URL}api/post/`;
 const apiUrlComment = `${process.env.REACT_APP_DEV_API_URL}api/comment/`;
@@ -56,12 +63,16 @@ export const fetchAsyncUpdatePost = createAsyncThunk(
       uploadData.append("title", newPost.title);
     }
     newPost.img && uploadData.append("img", newPost.img, newPost.img.name);
-    const res = await axios.patch(`${apiUrlPost}${newPost.postId}/`, uploadData, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.localJWT}`,
-      },
-    });
+    const res = await axios.patch(
+      `${apiUrlPost}${newPost.postId}/`,
+      uploadData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      }
+    );
     return res.data;
   }
 );
@@ -130,6 +141,42 @@ export const fetchAsyncPostComment = createAsyncThunk(
   }
 );
 
+/* コメント削除 */
+export const fetchAsyncDeleteComment = createAsyncThunk(
+  "comment/delete",
+  async (commentId: number) => {
+    const res = await axios.delete(`${apiUrlComment}${commentId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${localStorage.localJWT}`,
+      },
+    });
+    return res.data;
+  }
+);
+
+/* コメント更新 */
+export const fetchAsyncUpdateComment = createAsyncThunk(
+  "comment/update",
+  async (editComment: PROPS_UPDATECOMMENT) => {
+    const uploadData = new FormData();
+    if (editComment.text !== "") {
+      uploadData.append("text", editComment.text);
+    }
+    const res = await axios.patch(
+      `${apiUrlComment}${editComment.id}/`,
+      uploadData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      }
+    );
+    return res.data;
+  }
+);
+
 export const postSlice = createSlice({
   name: "post",
   initialState: {
@@ -138,7 +185,12 @@ export const postSlice = createSlice({
     openPostMenu: false,
     openEditPost: false,
     openDelete: false,
+    openCommentMenu: false,
+    openDeleteComment: false,
+    openEditComment: false,
     postId: 0,
+    commentId: 0,
+    textComment: "",
     title: "",
     imageUrl: "",
     posts: [
@@ -192,12 +244,34 @@ export const postSlice = createSlice({
     resetOpenDelete(state) {
       state.openDelete = false;
     },
+    setOpenCommentMenu(state, commentId: any) {
+      state.commentId = commentId.payload;
+      state.openCommentMenu = true;
+    },
+    setTextComment(state, textComment: any) {
+      state.textComment = textComment.payload;
+    },
+    resetOpenCommentMenu(state) {
+      state.openCommentMenu = false;
+    },
+    setOpenDeleteComment(state) {
+      state.openDeleteComment = true;
+    },
+    resetOpenDeleteComment(state) {
+      state.openDeleteComment = false;
+    },
+    setOpenEditComment(state) {
+      state.openEditComment = true;
+    },
+    resetOpenEditComment(state) {
+      state.openEditComment = false;
+    },
     setTitle(state, title: any) {
-      state.title = title.payload
+      state.title = title.payload;
     },
     setImageUrl(state, imageUrl: any) {
-      state.imageUrl = imageUrl.payload
-    }
+      state.imageUrl = imageUrl.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAsyncGetPosts.fulfilled, (state, action) => {
@@ -212,12 +286,20 @@ export const postSlice = createSlice({
         posts: [...state.posts, action.payload],
       };
     });
+    builder.addCase(fetchAsyncDeletePost.fulfilled, (state, action) => {
+      return {
+        ...state,
+        posts: state.posts.filter((post) => {
+          if (post.id !== action.meta.arg) return post;
+        }),
+      };
+    });
     builder.addCase(fetchAsyncUpdatePost.fulfilled, (state, action) => {
       return {
         ...state,
         posts: state.posts.map((post) =>
-        post.id === action.payload.id ? action.payload : post
-      ),
+          post.id === action.payload.id ? action.payload : post
+        ),
       };
     });
     builder.addCase(fetchAsyncGetComments.fulfilled, (state, action) => {
@@ -240,6 +322,22 @@ export const postSlice = createSlice({
         ),
       };
     });
+    builder.addCase(fetchAsyncDeleteComment.fulfilled, (state, action) => {
+      return {
+        ...state,
+        comments: state.comments.filter((comment) => {
+          if (comment.id !== action.meta.arg) return comment;
+        }),
+      };
+    });
+    builder.addCase(fetchAsyncUpdateComment.fulfilled, (state, action) => {
+      return {
+        ...state,
+        comments: state.comments.map((comment) =>
+          comment.id === action.payload.id ? action.payload : comment
+      ),
+      };
+    });
   },
 });
 
@@ -254,6 +352,13 @@ export const {
   resetOpenEditPost,
   setOpenDelete,
   resetOpenDelete,
+  setOpenCommentMenu,
+  resetOpenCommentMenu,
+  setOpenDeleteComment,
+  resetOpenDeleteComment,
+  setOpenEditComment,
+  resetOpenEditComment,
+  setTextComment,
   setTitle,
   setImageUrl,
 } = postSlice.actions;
@@ -267,6 +372,14 @@ export const selectOpenPostMenu = (state: RootState) => state.post.openPostMenu;
 export const selectOpenEditPost = (state: RootState) => state.post.openEditPost;
 export const selectOpenDelete = (state: RootState) => state.post.openDelete;
 export const selectPostId = (state: RootState) => state.post.postId;
+export const selectCommentId = (state: RootState) => state.post.commentId;
+export const selectOpenCommentMenu = (state: RootState) =>
+  state.post.openCommentMenu;
+export const selectOpenDeleteComment = (state: RootState) =>
+  state.post.openDeleteComment;
+export const selectOpenEditComment = (state: RootState) =>
+  state.post.openEditComment;
+export const selectTextComment = (state: RootState) => state.post.textComment;
 export const selectTitle = (state: RootState) => state.post.title;
 export const selectImageUrl = (state: RootState) => state.post.imageUrl;
 

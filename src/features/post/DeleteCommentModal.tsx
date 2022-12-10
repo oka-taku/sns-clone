@@ -4,17 +4,17 @@ import styles from './Post.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch } from '../../app/store'
 import {
-    fetchAsyncDeletePost,
-    resetOpenDelete,
-    selectPostId,
-    selectOpenDelete,
+    resetOpenDeleteComment,
+    selectCommentId,
+    selectOpenDeleteComment,
     fetchPostStart,
     fetchPostEnd,
+    fetchAsyncDeleteComment,
 } from './postSlice'
 import { Button, useMediaQuery } from '@mui/material'
 
 
-const DeleteModal = () => {
+const DeleteCommentModal = () => {
 
     const isMaxWidth = useMediaQuery('(max-width: 550px)');
     const customStyles = {
@@ -31,40 +31,40 @@ const DeleteModal = () => {
         },
     };
     const dispatch: AppDispatch = useDispatch();
-    const openPostDelete = useSelector(selectOpenDelete);
-    const postId = useSelector(selectPostId);
-    const deletePost = async (e: React.MouseEvent<HTMLElement>) => {
+    const openDeleteComment = useSelector(selectOpenDeleteComment);
+    const commentId = useSelector(selectCommentId);
+    const deleteComment = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
         await dispatch(fetchPostStart());
-        await dispatch(fetchAsyncDeletePost(postId));
+        await dispatch(fetchAsyncDeleteComment(commentId));
         await dispatch(fetchPostEnd());
-        dispatch(resetOpenDelete());
+        dispatch(resetOpenDeleteComment());
     }
 
     return (
         <>
             <Modal
-                isOpen={openPostDelete}
+                isOpen={openDeleteComment}
                 onRequestClose={async () => {
-                    await dispatch(resetOpenDelete());
+                    await dispatch(resetOpenDeleteComment());
                 }}
                 style={customStyles}
             >
                 <div className={styles.delete_text}>
-                    <h3>投稿を削除しますか？</h3>
-                    <div className={styles.delete_text_child}>この投稿を削除しますか？</div>
+                    <h3>コメントを削除しますか？</h3>
+                    <div className={styles.delete_text_child}>このコメントを削除しますか？</div>
                 </div>
                 <div className={styles.delete_menu} >
                     <div className={styles.delete_button_border}>
                         <Button className={styles.edit_post_button} style={{ 'color': 'red', 'fontWeight': 'bold' }}
-                            onClick={deletePost}>
+                            onClick={deleteComment}>
                             削除
                         </Button>
                     </div>
                     <div className={styles.delete_button_border}>
                         <Button className={styles.edit_post_button}
                             onClick={() => {
-                                dispatch(resetOpenDelete())
+                                dispatch(resetOpenDeleteComment())
                             }}>
                             キャンセル
                         </Button>
@@ -75,4 +75,4 @@ const DeleteModal = () => {
     )
 }
 
-export default DeleteModal
+export default DeleteCommentModal

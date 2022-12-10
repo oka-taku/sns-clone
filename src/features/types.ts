@@ -43,6 +43,11 @@ export interface PROPS_COMMENT {
   post: number;
 }
 
+export interface PROPS_UPDATECOMMENT {
+  id: number;
+  text: string;
+}
+
 /* Post.tsx */
 export interface PROPS_POST {
   postId: number;

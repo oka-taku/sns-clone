@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Post.module.css'
 import { Avatar, Divider, Checkbox } from '@mui/material'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import { Favorite, FavoriteBorder, MoreVert } from '@mui/icons-material'
 import { AvatarGroup } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { BsThreeDots } from 'react-icons/bs'
@@ -12,6 +12,8 @@ import {
     setOpenPostMenu,
     setTitle,
     setImageUrl,
+    setOpenCommentMenu,
+    setTextComment,
     selectComments,
     fetchPostStart,
     fetchPostEnd,
@@ -106,7 +108,6 @@ const Post: React.FC<PROPS_POST> = ({
                                 src={profiles.find((prof) => prof.userProfile === like)?.img?.replace("http://snsclone.tk", "https://snsclone.tk")}
                             />
                         ))}
-
                     </AvatarGroup>
                 </h4>
 
@@ -121,7 +122,7 @@ const Post: React.FC<PROPS_POST> = ({
                                     )?.img?.replace("http://snsclone.tk", "https://snsclone.tk")
                                 }
                                 className={styles.post_avatar}
-                                sx={{w: 3, h: 3, mr: 1}}
+                                sx={{ w: 3, h: 3, mr: 1 }}
                             />
                             <p>
                                 <strong className={styles.post_strong}>
@@ -133,6 +134,15 @@ const Post: React.FC<PROPS_POST> = ({
                                 </strong>
                                 {comment.text}
                             </p>
+                            {comment.userComment === loginId ?
+                                <MoreVert onClick={() => {
+                                    dispatch(setOpenCommentMenu(comment.id));
+                                    dispatch(setTextComment(comment.text));
+                                }} />
+                                :
+                                null
+                            }
+
                         </div>
                     ))}
                 </div>
