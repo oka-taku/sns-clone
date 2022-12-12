@@ -12,6 +12,7 @@ import {
 import { MdAddAPhoto } from 'react-icons/md'
 import {
     editNickname,
+    editId,
     selectProfile,
     setOpenSignIn,
     resetOpenSignIn,
@@ -70,7 +71,7 @@ const Core: React.FC = () => {
         <div>
             <div className={styles.core_header}>
                 <h1 className={styles.core_title}>SNS clone</h1>
-                {localStorage.getItem('localJWT') !== null && profile.id ?
+                {localStorage.getItem('localJWT') && profile?.id ?
                     <>
                         <button
                             className={styles.core_btnModal}
@@ -92,6 +93,7 @@ const Core: React.FC = () => {
                                 onClick={() => {
                                     localStorage.removeItem("localJWT");
                                     dispatch(editNickname(""));
+                                    dispatch(editId(0));
                                     dispatch(resetOpenProfile());
                                     dispatch(resetOpenNewPost());
                                     dispatch(resetOpenPostMenu());
@@ -145,7 +147,7 @@ const Core: React.FC = () => {
                 }
             </div>
 
-            {localStorage.getItem('localJWT') !== null && <>
+            {localStorage.getItem('localJWT') && profile?.id ? <>
                 <div className={styles.core_posts}>
                     <Grid container spacing={4}>
                         {posts
@@ -165,8 +167,8 @@ const Core: React.FC = () => {
                             ))}
                     </Grid>
                 </div>
-            </>}
-            {localStorage.getItem('localJWT') === null || !profile.id ? <Auth /> : null}
+            </> : null}
+            {!localStorage.getItem('localJWT') || !profile.id ? <Auth /> : null}
             <EditProfile />
             <NewPost />
             <PostMenu />

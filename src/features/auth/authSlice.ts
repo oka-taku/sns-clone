@@ -138,6 +138,9 @@ export const authSlice = createSlice({
     editNickname(state, action) {
       state.myprofile.nickName = action.payload;
     },
+    editId(state, action) {
+      state.myprofile.id = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAsyncLogin.fulfilled, (state, action) => {
@@ -171,6 +174,7 @@ export const {
   setOpenProfile,
   resetOpenProfile,
   editNickname,
+  editId,
 } = authSlice.actions;
 
 export const selectIsLoadingAuth = (state: RootState) =>
