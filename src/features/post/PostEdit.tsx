@@ -14,8 +14,8 @@ import {
     fetchPostEnd,
 } from './postSlice'
 import { useMediaQuery } from '@mui/material'
-import TextareaAutosize from '@mui/base/TextareaAutosize';
-
+import TextareaAutosize from '@mui/base/TextareaAutosize'
+import { HTTP_URL, HTTPS_URL } from '../constant'
 
 const PostEdit: React.FC = () => {
     const isMaxWidth = useMediaQuery('(max-width: 1024px)');
@@ -91,7 +91,7 @@ const PostEdit: React.FC = () => {
                     </div>
                 </header>
                 <main style={{height: "90%"}}>
-                    <img id='image' className={styles.edit_post_main_img} src={imageUrl.replace("http://snsclone.tk", "https://snsclone.tk")} alt="投稿画像" onClick={handlerEditPicture} />
+                    <img id='image' className={styles.edit_post_main_img} src={imageUrl.replace(HTTP_URL, HTTPS_URL)} alt="投稿画像" onClick={handlerEditPicture} />
                     <input
                         type="file"
                         id="imageInput"

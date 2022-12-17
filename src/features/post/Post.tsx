@@ -21,6 +21,7 @@ import {
     fetchAsyncPatchLiked,
 } from './postSlice'
 import { PROPS_POST } from '../types'
+import { HTTP_URL, HTTPS_URL } from '../constant'
 
 const Post: React.FC<PROPS_POST> = ({
     postId,
@@ -69,7 +70,7 @@ const Post: React.FC<PROPS_POST> = ({
         return (
             <div className={styles.post}>
                 <div className={styles.post_header}>
-                    <Avatar className={styles.post_avatar} src={prof[0]?.img?.replace("http://snsclone.tk", "https://snsclone.tk")} />
+                    <Avatar className={styles.post_avatar} src={prof[0]?.img?.replace(HTTP_URL, HTTPS_URL)} />
                     <h3>{prof[0]?.nickName}</h3>
                     {
                         loginId === userPost ?
@@ -89,7 +90,7 @@ const Post: React.FC<PROPS_POST> = ({
 
                 </div>
 
-                <img className={styles.post_image} src={imageUrl.replace("http://snsclone.tk", "https://snsclone.tk")} alt="" />
+                <img className={styles.post_image} src={imageUrl.replace(HTTP_URL, HTTPS_URL)} alt="" />
 
                 <h4 className={styles.post_text}>
                     <Checkbox
@@ -105,7 +106,7 @@ const Post: React.FC<PROPS_POST> = ({
                             <Avatar
                                 className={`${styles.post_avatarGroup} ${styles.post_avatar}`}
                                 key={like}
-                                src={profiles.find((prof) => prof.userProfile === like)?.img?.replace("http://snsclone.tk", "https://snsclone.tk")}
+                                src={profiles.find((prof) => prof.userProfile === like)?.img?.replace(HTTP_URL, HTTPS_URL)}
                             />
                         ))}
                     </AvatarGroup>
@@ -119,7 +120,7 @@ const Post: React.FC<PROPS_POST> = ({
                                 src={
                                     profiles.find(
                                         (prof) => prof.userProfile === comment.userComment
-                                    )?.img?.replace("http://snsclone.tk", "https://snsclone.tk")
+                                    )?.img?.replace(HTTP_URL, HTTPS_URL)
                                 }
                                 className={styles.post_avatar}
                                 sx={{ w: 3, h: 3, mr: 1 }}

@@ -225,9 +225,9 @@ export const postSlice = createSlice({
     resetOpenNewPost(state) {
       state.openNewPost = false;
     },
-    setOpenPostMenu(state, postId: any) {
+    setOpenPostMenu(state, action) {
       state.openPostMenu = true;
-      state.postId = postId.payload;
+      state.postId = action.payload;
     },
     resetOpenPostMenu(state) {
       state.openPostMenu = false;
@@ -244,12 +244,12 @@ export const postSlice = createSlice({
     resetOpenDelete(state) {
       state.openDelete = false;
     },
-    setOpenCommentMenu(state, commentId: any) {
-      state.commentId = commentId.payload;
+    setOpenCommentMenu(state, action) {
+      state.commentId = action.payload;
       state.openCommentMenu = true;
     },
-    setTextComment(state, textComment: any) {
-      state.textComment = textComment.payload;
+    setTextComment(state, action) {
+      state.textComment = action.payload;
     },
     resetOpenCommentMenu(state) {
       state.openCommentMenu = false;
@@ -266,11 +266,11 @@ export const postSlice = createSlice({
     resetOpenEditComment(state) {
       state.openEditComment = false;
     },
-    setTitle(state, title: any) {
-      state.title = title.payload;
+    setTitle(state, action) {
+      state.title = action.payload;
     },
-    setImageUrl(state, imageUrl: any) {
-      state.imageUrl = imageUrl.payload;
+    setImageUrl(state, action) {
+      state.imageUrl = action.payload;
     },
   },
   extraReducers: (builder) => {

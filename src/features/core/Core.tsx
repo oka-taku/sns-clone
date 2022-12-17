@@ -44,6 +44,7 @@ import DeleteModal from '../post/DeleteModal'
 import CommentMenu from '../post/CommentMenu'
 import DeleteCommentModal from '../post/DeleteCommentModal'
 import CommentEdit from '../post/CommentEdit'
+import { HTTP_URL, HTTPS_URL } from '../constant'
 
 const Core: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -120,7 +121,7 @@ const Core: React.FC = () => {
                                     dispatch(resetOpenEditComment());
                                 }}
                             >
-                                <Avatar className={styles.core_avator} alt="who?" src={profile.img?.replace("http://snsclone.tk", "https://snsclone.tk")} />{" "}
+                                <Avatar className={styles.core_avator} alt="who?" src={profile.img?.replace(HTTP_URL, HTTPS_URL)} />{" "}
                             </button>
                         </div>
                     </> :
